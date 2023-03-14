@@ -27157,47 +27157,28 @@ var _movieView = require("../movie-view/movie-view");
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
-    const [movies, setMovies] = (0, _react.useState)([
-        {
-            id: 1,
-            image: "https://m.media-amazon.com/images/I/81TWj3zTsQL._RI_.jpg",
-            title: "Corpse Bride",
-            description: "When a shy groom practices his wedding vows in the inadvertent presence of a deceased woman, she rises from the grave assuming he has married her. -IMDb",
-            genre: "Animation",
-            director: "Tim Burton"
-        },
-        {
-            id: 2,
-            image: "https://m.media-amazon.com/images/I/91bhPto4BZL._RI_.jpg",
-            title: "The Hangover",
-            description: "Three buddies wake up from a bachelor party in Las Vegas with no memory of the previous night and the bachelor missing. -IMDb",
-            genre: "Comedy",
-            director: "Todd Phillips"
-        },
-        {
-            id: 3,
-            image: "https://m.media-amazon.com/images/I/51qGDT4c6WL._AC_UF894,1000_QL80_.jpg",
-            title: "Insidious",
-            description: "A family looks to prevent evil spirits from trapping their comatose child in a realm called The Further. -IMDb",
-            genre: "Horror",
-            director: "James Wan"
-        }
-    ]);
+    const [movies, setMovies] = (0, _react.useState)([]);
+    (0, _react.useEffect)(()=>{
+        fetch("https://movie-usher.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
+            console.log("movies from api:", data);
+            setMovies(data);
+        });
+    }, []);
     const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
     if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
         movie: selectedMovie,
         onBackClick: ()=>setSelectedMovie(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 40,
-        columnNumber: 5
+        lineNumber: 23,
+        columnNumber: 7
     }, undefined);
     if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: "The list is empty."
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 47,
-        columnNumber: 10
+        lineNumber: 30,
+        columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
@@ -27205,18 +27186,18 @@ const MainView = ()=>{
                 onMovieClick: (newSelectedMovie)=>{
                     setSelectedMovie(newSelectedMovie);
                 }
-            }, movie.id, false, {
+            }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 53,
-                columnNumber: 7
+                lineNumber: 36,
+                columnNumber: 9
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 51,
-        columnNumber: 3
+        lineNumber: 34,
+        columnNumber: 5
     }, undefined);
 };
-_s(MainView, "JcVWytEzEMxDyGg9xr8p3AOaP8A=");
+_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
