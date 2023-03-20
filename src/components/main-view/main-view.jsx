@@ -17,18 +17,8 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken? storedToken : null);
 
   useEffect(() => {
-<<<<<<< Updated upstream
-    fetch("https://movie-usher.herokuapp.com/movies")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("movies from api:", data);
-        setMovies(data);
-      });
-  }, []);
-=======
     if (!token) return;
->>>>>>> Stashed changes
-
+    
     fetch("https://movie-usher.herokuapp.com/movies", {
       headers: {Authorization: 'Bearer ${token}' },
     })
