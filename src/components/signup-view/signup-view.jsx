@@ -17,7 +17,7 @@ export const SignupView = () => {
       Birthday: birthday
     }
 
-    fetch("https://movie-usher.herokuapp.com", {
+    fetch("https://movie-usher.herokuapp.com/users", {
       method: "POST", 
       body: JSON.stringify(data),
       headers: {
@@ -58,7 +58,7 @@ export const SignupView = () => {
       <label>
         Email:
         <input
-          type="rmail"
+          type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -73,7 +73,7 @@ export const SignupView = () => {
           required
         />
       </label>
-      <button type="submit">Submit</button>
+      <button type="submit">Signup</button>
     </form>
   );
 };
