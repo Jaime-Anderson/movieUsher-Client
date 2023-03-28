@@ -17,16 +17,29 @@ export const MainView = () => {
   const [token, setToken] = useState(storedToken? storedToken : null);
 
   useEffect(() => {
-    if (!token) return;
+    if (!token) {
+      return;
+    }
     
     fetch("https://movie-usher.herokuapp.com/movies", {
-      headers: {Authorization: 'Bearer ${token}' },
+      headers: {Authorization: 'Bearer ${token}' }
     })
       .then((response) => response.json())
-      .then((movies) => {
-        console.log(movies);
+      .then((data) => {
+        console.log('data', data);
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.Title,
+            image: movie.ImagePath,
+            description: movie.Description,
+            genre: movie.Genre.Name,
+            director: movie.Director.Name
+          }
+        });
+        setMovies(moviesFromApi);
       });
-  }, [token]);
+  }, [token])
 
   if (!user) {
     return (
@@ -39,7 +52,7 @@ export const MainView = () => {
         or
         <SignupView />
       </>
-    );
+    )
   }
 
   if (selectedMovie) {
@@ -89,6 +102,7 @@ export const MainView = () => {
       >
         Logout
       </button>
+      
       {movies.map((movie) => (
         <MovieCard
           key={movie._id}
@@ -99,4 +113,5 @@ export const MainView = () => {
         />
       ))}
     </div>
-)};
+  );
+}
