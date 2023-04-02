@@ -3,13 +3,27 @@ import { Button, Form, Card, CardGroup, Container, Col, Row } from "react-bootst
 
 export const SignupView = () => {
   const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState(false);
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
 
   const handleSubmit = (event) => {
 
     event.preventDefault();
+
+    if (username.length < 3) {
+      console.log("clicked username");
+      setUsernameError(true);
+      return;
+    }
+
+    if (password.length < 8 ) {
+      console.log("clicked pass");
+      setPasswordError(true);
+      return;
+    }
 
     const data = {
       Username: username,
@@ -28,7 +42,6 @@ export const SignupView = () => {
       if (response.ok) {
         alert("Signup successful!");
         window.location.reload();
-
       } else {
         alert("Signup failed.");
       }
@@ -51,11 +64,13 @@ export const SignupView = () => {
                     <Form.Control
                       type="text"
                       value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      onChange={(e) => {setUsername(e.target.value);
+                      setUsernameError(false);
+                      }}
                       required
-                      minLength="3"
                       placeholder="Enter your desired username"
                     />
+                    {usernameError && <div>Username is less then 3</div>}
                   </Form.Group>
                   <Form.Group controlID="formPassword">
                     <Form.Label>
@@ -64,11 +79,13 @@ export const SignupView = () => {
                     <Form.Control
                       type="password"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => {setPassword(e.target.value);
+                      setPasswordError(false);
+                      }}
                       required
-                      minlength="8"
                       placeholder="Your password must be 8 or more characters"
                     />
+                    {passwordError && <div>Password is less than 8</div>}
                   </Form.Group>
                   <Form.Group controlID="formEmail">
                     <Form.Label>
