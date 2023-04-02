@@ -42,14 +42,16 @@ export const MainView = () => {
 
   return (
     <>
-      <Button
-        onClick={() => {
-          setUser(null);
-          setToken(null);
-          localStorage.clear();
-        }}>
-        Logout
-      </Button>
+      {user && (
+        <Button
+          onClick={() => {
+            setUser(null);
+            setToken(null);
+            localStorage.clear();
+          }}>
+          Logout
+        </Button>
+      )}
 
       <Row>
         {!user ? (
