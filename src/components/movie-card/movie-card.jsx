@@ -1,17 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-<<<<<<< Updated upstream
-
-export const MovieCard = ({ movie, onMovieClick }) => {
-  return (
-    <div 
-      onClick={() =>{
-      onMovieClick(movie);
-      }}
-    >
-      {movie.title}
-    </div>
-=======
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -27,7 +15,6 @@ export const MovieCard = ({ movie }) => {
         </Link>
       </Card.Body>
     </Card>
->>>>>>> Stashed changes
   );
 };
 
