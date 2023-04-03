@@ -1,4 +1,8 @@
 @import '~bootstrap/scss/bootstrap.scss';
 
 $primary: #D9DAD9;
-$body-bg: #4C8055;
+$body-bg: #000;
+
+body{
+  background-color: $body-bg;
+}
