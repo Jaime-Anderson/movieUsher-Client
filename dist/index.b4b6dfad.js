@@ -27384,7 +27384,7 @@ const MovieCard = ({ movie  })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                        to: "/movies/${encodeURIComponent(movie.id)",
+                        to: "/movies/${encodeURIComponent(movie.id)}",
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                             variant: "link",
                             children: "Open"
@@ -46454,7 +46454,7 @@ const MovieView = ({ movies  })=>{
         movieId
     ]);
     const addFavorite = ()=>{
-        fetch(`https://myflixapi-11d1.onrender.com/users/${user.username}/movies/${movieId}`, {
+        fetch(`https://movie-usher.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${token}`
@@ -47471,7 +47471,7 @@ const ProfileView = ({ user , token , movies , onLoggedOut , updateUser  })=>{
                                                 className: "mt-3",
                                                 variant: "primary",
                                                 type: "submit",
-                                                children: "Submit"
+                                                children: "Update"
                                             }, void 0, false, {
                                                 fileName: "src/components/profile-view/profile-view.jsx",
                                                 lineNumber: 133,

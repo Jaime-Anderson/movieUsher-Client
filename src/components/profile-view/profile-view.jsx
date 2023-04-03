@@ -130,7 +130,7 @@ export const ProfileView =({user, token, movies, onLoggedOut, updateUser }) => {
                         className="bg-light"
                       />
                   </Form.Group>
-                  <Button className="mt-3" variant="primary" type="submit">Submit</Button>
+                  <Button className="mt-3" variant="primary" type="submit">Update</Button>
                 </Form>
             </Card.Body>
           </Card>

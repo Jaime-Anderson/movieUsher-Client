@@ -12,7 +12,7 @@ export const MovieView = ({ movies }) => {
   }, [movieId])
 
   const addFavorite = () => {
-    fetch(`https://myflixapi-11d1.onrender.com/users/${user.username}/movies/${movieId}`, {
+    fetch(`https://movie-usher.herokuapp.com/users/${user.username}/movies/${movieId}`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` }
     })
