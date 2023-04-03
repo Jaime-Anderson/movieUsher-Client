@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-import {useState, useEffect} from "react";
-
-import {MovieCard} from "../movie-card/movie-card";
-
-import {MovieView} from "../movie-view/movie-view";
-=======
 import { useState, useEffect } from "react";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
@@ -13,53 +6,37 @@ import { SignupView } from "../signup-view/signup-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { Row, Col } from "react-bootstrap";
 import {BrowserRouter, Routes, Route, Navigate} from "react-router-dom"
->>>>>>> Stashed changes
 
 export const MainView = () => {
+  const storedUser = JSON.parse(localStorage.getItem("user"));
+  const storedToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-<<<<<<< Updated upstream
-=======
   const [user, setUser] = useState(storedUser? storedUser : null);
   const [token, setToken] = useState(storedToken? storedToken : null);
->>>>>>> Stashed changes
 
   useEffect(() => {
-    fetch("https://movie-usher.herokuapp.com/movies")
+    if (!token) return;
+    fetch("https://movie-usher.herokuapp.com/movies", {
+      headers: {Authorization: 'Bearer ${token}' }
+    })
       .then((response) => response.json())
       .then((data) => {
-        console.log("movies from api:", data);
+        console.log('data', data);
+        const moviesFromApi = data.map((movie) => {
+          return {
+            id: movie._id,
+            title: movie.Title, 
+            image: movie.ImagePath, 
+            description: movie.Description,
+            genre: movie.Genre.Name, 
+            director: movie.Director.Name
+          }
+        });
+        setMovies(moviesFromApi);
       });
-  }, []);
-
-  const [selectedMovie, setSelectedMovie] = useState(null);
-
-  if (selectedMovie) {
-    return (
-      <MovieView movie={selectedMovie} 
-        onBackClick={() => 
-          setSelectedMovie(null)} />
-    );
-  }
-
-  if (movies.length === 0) {
-    return <div>The list is empty.</div>;
-  }
+  }, [token]);
 
   return (
-<<<<<<< Updated upstream
-    <div>
-      {movies.map((movie) => (
-        <MovieCard
-          key={movie.id}
-          movie={movie}
-          onMovieClick={(newSelectedMovie) => {
-            setSelectedMovie(newSelectedMovie)
-          }}
-        />
-      ))}
-    </div>
-)};
-=======
     <BrowserRouter>
       <>
         <NavigationBar
@@ -142,4 +119,3 @@ export const MainView = () => {
     </BrowserRouter>
   );
 }
->>>>>>> Stashed changes

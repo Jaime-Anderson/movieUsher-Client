@@ -27154,64 +27154,39 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _movieCard = require("../movie-card/movie-card");
 var _movieView = require("../movie-view/movie-view");
-<<<<<<< Updated upstream
-=======
 var _loginView = require("../login-view/login-view");
 var _signupView = require("../signup-view/signup-view");
 var _navigationBar = require("../navigation-bar/navigation-bar");
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
->>>>>>> Stashed changes
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedToken = localStorage.getItem("token");
     const [movies, setMovies] = (0, _react.useState)([]);
-<<<<<<< Updated upstream
-=======
     const [user, setUser] = (0, _react.useState)(storedUser ? storedUser : null);
     const [token, setToken] = (0, _react.useState)(storedToken ? storedToken : null);
->>>>>>> Stashed changes
     (0, _react.useEffect)(()=>{
-        fetch("https://movie-usher.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            console.log("movies from api:", data);
+        if (!token) return;
+        fetch("https://movie-usher.herokuapp.com/movies", {
+            headers: {
+                Authorization: "Bearer ${token}"
+            }
+        }).then((response)=>response.json()).then((data)=>{
+            console.log("data", data);
+            const moviesFromApi = data.map((movie)=>{
+                return {
+                    id: movie._id,
+                    title: movie.Title,
+                    image: movie.ImagePath,
+                    description: movie.Description,
+                    genre: movie.Genre.Name,
+                    director: movie.Director.Name
+                };
+            });
+            setMovies(moviesFromApi);
         });
-<<<<<<< Updated upstream
-    }, []);
-    const [selectedMovie, setSelectedMovie] = (0, _react.useState)(null);
-    if (selectedMovie) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-        movie: selectedMovie,
-        onBackClick: ()=>setSelectedMovie(null)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 22,
-        columnNumber: 7
-    }, undefined);
-    if (movies.length === 0) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: "The list is empty."
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 29,
-        columnNumber: 12
-    }, undefined);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: movies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                movie: movie,
-                onMovieClick: (newSelectedMovie)=>{
-                    setSelectedMovie(newSelectedMovie);
-                }
-            }, movie.id, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 35,
-                columnNumber: 9
-            }, undefined))
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 33,
-        columnNumber: 5
-    }, undefined);
-};
-_s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
-=======
     }, [
         token
     ]);
@@ -27328,7 +27303,6 @@ _s(MainView, "llzgrUkvR/+OoCNfiqlA1H2LLFI=");
     }, undefined);
 };
 _s(MainView, "PUnVg6+lI+7tf2Wb7jSoGqC3UJ4=");
->>>>>>> Stashed changes
 _c = MainView;
 var _c;
 $RefreshReg$(_c, "MainView");
@@ -27338,11 +27312,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< Updated upstream
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN"}],"bwuIu":[function(require,module,exports) {
-=======
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../navigation-bar/navigation-bar":"bsPVM"}],"bwuIu":[function(require,module,exports) {
->>>>>>> Stashed changes
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","../login-view/login-view":"9YtA0","../signup-view/signup-view":"4OGiN","react-bootstrap":"3AD9A","../navigation-bar/navigation-bar":"bsPVM","react-router-dom":"9xmpe"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -27357,17 +27327,6 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-<<<<<<< Updated upstream
-const MovieCard = ({ movie , onMovieClick  })=>{
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        onClick: ()=>{
-            onMovieClick(movie);
-        },
-        children: movie.title
-    }, void 0, false, {
-        fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 5,
-=======
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
 const MovieCard = ({ movie  })=>{
@@ -27422,7 +27381,6 @@ const MovieCard = ({ movie  })=>{
     }, void 0, true, {
         fileName: "src/components/movie-card/movie-card.jsx",
         lineNumber: 8,
->>>>>>> Stashed changes
         columnNumber: 5
     }, undefined);
 };
@@ -27442,11 +27400,7 @@ $RefreshReg$(_c, "MovieCard");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< Updated upstream
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","prop-types":"7wKI2"}],"cXnTB":[function(require,module,exports) {
-=======
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","prop-types":"7wKI2","react-bootstrap":"3AD9A","react":"21dqq","react-router-dom":"9xmpe"}],"cXnTB":[function(require,module,exports) {
->>>>>>> Stashed changes
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -28356,9 +28310,6 @@ printWarning = function(text) {
 };
 module.exports = checkPropTypes;
 
-<<<<<<< Updated upstream
-},{"b323b7fc8dfe4e4a":"jZTZJ","9d24622f0641e1bd":"fqKuf"}],"ggaUx":[function(require,module,exports) {
-=======
 },{"b323b7fc8dfe4e4a":"jZTZJ","9d24622f0641e1bd":"fqKuf"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -46451,7 +46402,6 @@ function getTargetMatch(matches, location) {
 } //#endregion
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB"}],"ggaUx":[function(require,module,exports) {
->>>>>>> Stashed changes
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -46535,32 +46485,20 @@ const MovieView = ({ movies  })=>{
                         children: "Genre: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                        lineNumber: 16,
-=======
                         lineNumber: 23,
->>>>>>> Stashed changes
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: movie.genre
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                        lineNumber: 17,
-=======
                         lineNumber: 24,
->>>>>>> Stashed changes
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                lineNumber: 15,
-=======
                 lineNumber: 22,
->>>>>>> Stashed changes
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -46569,39 +46507,27 @@ const MovieView = ({ movies  })=>{
                         children: "Director: "
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                        lineNumber: 20,
-=======
                         lineNumber: 27,
->>>>>>> Stashed changes
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
                         children: movie.director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                        lineNumber: 21,
-=======
                         lineNumber: 28,
->>>>>>> Stashed changes
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                lineNumber: 19,
-=======
                 lineNumber: 26,
->>>>>>> Stashed changes
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                 to: "/",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
                     className: "back-button",
-                    variant: "linkw",
+                    variant: "link",
                     children: "Back"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
@@ -46610,11 +46536,7 @@ const MovieView = ({ movies  })=>{
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-view/movie-view.jsx",
-<<<<<<< Updated upstream
-                lineNumber: 23,
-=======
                 lineNumber: 30,
->>>>>>> Stashed changes
                 columnNumber: 7
             }, undefined)
         ]
@@ -46638,9 +46560,6 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-<<<<<<< Updated upstream
-},{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN"}],"lJZlQ":[function() {},{}]},["YoQkV","isgLY","d8Dch"], "d8Dch", "parcelRequirebc64")
-=======
 },{"react/jsx-dev-runtime":"iTorj","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","react-router":"dbWyW","react-router-dom":"9xmpe"}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
@@ -47062,7 +46981,7 @@ $RefreshReg$(_c, "SignupView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN","react-bootstrap":"3AD9A"}],"bsPVM":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN"}],"bsPVM":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$abf5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -47187,6 +47106,5 @@ $RefreshReg$(_c, "NavigationBar");
   window.$RefreshSig$ = prevRefreshSig;
 }
 },{"react/jsx-dev-runtime":"iTorj","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"cXnTB","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"dqsuN"}],"lJZlQ":[function() {},{}]},["YoQkV","isgLY","d8Dch"], "d8Dch", "parcelRequirebc64")
->>>>>>> Stashed changes
 
 //# sourceMappingURL=index.b4b6dfad.js.map
