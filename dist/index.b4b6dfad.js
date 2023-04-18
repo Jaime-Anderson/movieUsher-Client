@@ -27317,7 +27317,8 @@ const MainView = ()=>{
                                     children: "The list is empty"
                                 }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                     children: viewMovies.map((movie)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                                            className: "mb-4",
+                                            className: "mb-5",
+                                            md: 3,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                 movie: movie
                                             }, void 0, false, void 0, void 0)
@@ -27403,7 +27404,8 @@ const MovieCard = ({ movie  })=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                         to: `/movies/${encodeURIComponent(movie.id)}`,
                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                            variant: "link",
+                            variant: "primary",
+                            className: "btn-dark",
                             children: "Open"
                         }, void 0, false, {
                             fileName: "src/components/movie-card/movie-card.jsx",
@@ -46464,7 +46466,7 @@ var _reactRouterDom = require("react-router-dom");
 var _reactRouter = require("react-router");
 var _movieCard = require("../movie-card/movie-card");
 var _s = $RefreshSig$();
-const MovieView = ({ movies , user , token , updateUser  })=>{
+const MovieView = ({ movies , user , token , updateUser , onBackClick  })=>{
     _s();
     const { movieId  } = (0, _reactRouter.useParams)();
     const movie = movies.find((m)=>m.id === movieId);
@@ -46514,6 +46516,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                    className: "w-100",
                     src: movie.image
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
@@ -46616,7 +46619,8 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
                 to: "/",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                    variant: "link",
+                    variant: "primary",
+                    className: "btn-dark",
                     children: "Back"
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
@@ -46630,7 +46634,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
             }, undefined),
             isFavorite ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                 variant: "danger",
-                className: "ms-2",
+                className: "ms-2 btn-dark",
                 onClick: removeFavorite,
                 children: "Remove from Favorites"
             }, void 0, false, {
@@ -46639,7 +46643,7 @@ const MovieView = ({ movies , user , token , updateUser  })=>{
                 columnNumber: 9
             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                 variant: "success",
-                className: "ms-2",
+                className: "ms-2 btn-dark",
                 onClick: addFavorite,
                 children: "Add to Favorites"
             }, void 0, false, {
@@ -47470,6 +47474,7 @@ const NavigationBar = ({ user , onLoggedOut , onSearch  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar), {
         bg: "light",
         expand: "lg",
+        className: "mb-3",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
             children: [
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Navbar).Brand, {
@@ -47578,6 +47583,7 @@ const NavigationBar = ({ user , onLoggedOut , onSearch  })=>{
                                     to: "/",
                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                         variant: "primary",
+                                        className: "btn-dark",
                                         onClick: ()=>{
                                             onSearch(query);
                                         },

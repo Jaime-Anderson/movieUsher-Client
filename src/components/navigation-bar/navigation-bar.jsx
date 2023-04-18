@@ -10,7 +10,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
   }, [query]);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" className="mb-3">
       <Container>
         <Navbar.Brand as={Link} to="/" onClick={() => setQuery("")}>
           movieUsher
@@ -46,7 +46,7 @@ export const NavigationBar = ({ user, onLoggedOut, onSearch }) => {
                   }}
                 />
                 <Link to={"/"}>
-                  <Button variant="primary" onClick={() => {
+                  <Button variant="primary" className="btn-dark" onClick={() => {
                     onSearch(query);
                   }}>
                     Search

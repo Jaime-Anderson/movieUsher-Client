@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import { MovieCard } from "../movie-card/movie-card";
 
-export const MovieView = ({ movies, user, token, updateUser }) => {
+export const MovieView = ({ movies, user, token, updateUser, onBackClick }) => {
   const { movieId } = useParams();
   const movie = movies.find((m) => m.id === movieId);
   console.log(JSON.stringify(user, null, 2));
@@ -67,7 +67,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
   return (
     <div>
       <div>
-        <img src={movie.image} />
+        <img className="w-100" src={movie.image} />
       </div>
       <div>
         <span>Title: </span>
@@ -86,14 +86,14 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         <span>{movie.director}</span>
       </div>
       <Link to="/">
-        <Button variant="link">Back</Button>
+        <Button variant="primary" className="btn-dark">Back</Button>
       </Link>
       {isFavorite ? (
-        <Button variant="danger" className="ms-2" onClick={removeFavorite}>
+        <Button variant="danger" className="ms-2 btn-dark" onClick={removeFavorite}>
           Remove from Favorites
         </Button>
       ) : (
-        <Button variant="success" className="ms-2" onClick={addFavorite}>
+        <Button variant="success" className="ms-2 btn-dark" onClick={addFavorite}>
           Add to Favorites
         </Button>
       )}
