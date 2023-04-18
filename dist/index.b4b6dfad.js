@@ -46796,6 +46796,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                             type: "submit",
+                                            className: "btn-dark",
                                             children: "Submit"
                                         }, void 0, false, {
                                             fileName: "src/components/login-view/login-view.jsx",
@@ -47049,6 +47050,7 @@ const SignupView = ()=>{
                                         }, undefined),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
                                             type: "submit",
+                                            className: "btn-dark",
                                             children: "Signup"
                                         }, void 0, false, {
                                             fileName: "src/components/signup-view/signup-view.jsx",
